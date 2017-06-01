@@ -45,7 +45,7 @@ class Admin extends ActiveRecord
                 'adminuser' => $this->adminuser,
                 'isLogin' => 1,
             ];
-			
+			$_SESSION['ok'] = "abc";
 			$loginip = Yii::$app->request->userIP;
 			if($loginip == "::1"){
                 $loginip = "127.0.0.1";
