@@ -6,4 +6,5 @@ return [
     'username' => 'root',
     'password' => '905407339',
     'charset' => 'utf8',
+	'tablePrefix' => 'shop_',
 ];
