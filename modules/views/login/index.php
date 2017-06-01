@@ -78,19 +78,18 @@
 	?>
 	<?php 
 		if(!empty($errors)){
-			$output = "";
-			foreach($errors as $val){
-				
+			foreach($errors as $val){	
 				for($i=0;$i<count($val);$i++){
-					$output .= $val[$i]." ";
+					echo Alert::widget([
+						'options' => [
+							'class' => 'alert-danger danger_alt', //这里是提示框的class
+							'style' => 'text-align:center;',
+						],
+						'body' => $val[$i], //消息体
+					]);
 				}
 			}
-			echo Alert::widget([
-				'options' => [
-					'class' => 'alert-danger', //这里是提示框的class
-				],
-				'body' => $output, //消息体
-			]);
+			
 		}
 	?>
 	<!-- scripts -->
@@ -102,7 +101,7 @@
     <script type="text/javascript">
         $(function () {
            setTimeout(function(){
-			   $("#w1").fadeOut();
+			   $(".danger_alt").fadeOut();
 		   },3000);
 
         });
