@@ -37,24 +37,39 @@
     <div class="row-fluid login-wrapper">
         <a class="brand" href="index.html"></a>
 
+
+		<?php $form=ActiveForm::begin([
+			'fieldConfig' =>[
+				'template'=>'{error}{input}',
+			],
+		]);?>
         <div class="span4 box">
             <div class="content-wrap">
                 <h6>后台管理</h6>
-                <input class="span12" type="text" placeholder="管理员账号" />
-                <input class="span12" type="password" placeholder="管理员密码" />
+				<?php echo $form->field($model, 'adminuser')->textInput(["class" => "span12", "placeholder" => "管理员账号"]); ?>
+				<?php echo $form->field($model, 'adminpass')->passwordInput(["class" => "span12", "placeholder" => "管理员密码"]); ?>
+				<!--
+			   <input class="span12" type="password" placeholder="管理员密码" />
+			   -->
                 <a href="#" class="forgot">忘记密码?</a>
+		
+				<?php echo $form->field($model, 'rememberMe')->checkbox([
+                    'id' => 'remember-me',
+                    'template' => '<div class="remember">{input}<label for="remember-me">记住我</label></div>',
+                ]); ?>
+				<!--
                 <div class="remember">
                     <input id="remember-me" type="checkbox" />
                     <label for="remember-me">记住我</label>
                 </div>
+				-->
+				<?php echo Html::submitButton('登录', ["class" => "btn-glow primary login"]); ?>
+				<!--
                 <a class="btn-glow primary login" href="index.html">登录</a>
+				-->
             </div>
         </div>
-
-        <div class="span4 no-account">
-            <p>没有账户?</p>
-            <a href="signup.html">注册</a>
-        </div>
+		<?php ActiveForm::end(); ?>
     </div>
 
 	<!-- scripts -->
