@@ -10,9 +10,18 @@ class LoginController extends Controller
 {
 	public function actionIndex()
     {
-	$this->layout =false;
-	$model = new Admin;
-					
-        return $this->render('index',['model'=>$model]);
+		$errors = [];
+		$this->layout =false;
+		$model = new Admin;
+		if(Yii::$app->request->isPost){
+			$post = Yii::$app->request->post();
+			if($model->login($post)) {
+				$this->redirect(['back/index']);
+				Yii::$app->end();
+			}else{
+				$errors = $model->getErrors();
+			}
+		}				
+		return $this->render('index',['model'=>$model,'errors'=>$errors]);
     }
 }

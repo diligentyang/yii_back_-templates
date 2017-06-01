@@ -1,6 +1,7 @@
 ﻿<?php
     use yii\bootstrap\ActiveForm;
     use yii\helpers\Html;
+	use yii\bootstrap\Alert;
 ?>
 <!DOCTYPE html>
 <html class="login-bg">
@@ -40,7 +41,8 @@
 
 		<?php $form=ActiveForm::begin([
 			'fieldConfig' =>[
-				'template'=>'{error}{input}',
+				//'template'=>'{error}{label}{input}',//error 是错误信息，label是那个数据库的列名字，input是元素
+				'template'=>'{input}'
 			],
 		]);?>
         <div class="span4 box">
@@ -71,7 +73,26 @@
         </div>
 		<?php ActiveForm::end(); ?>
     </div>
-
+	<?php
+		
+	?>
+	<?php 
+		if(!empty($errors)){
+			$output = "";
+			foreach($errors as $val){
+				
+				for($i=0;$i<count($val);$i++){
+					$output .= $val[$i]." ";
+				}
+			}
+			echo Alert::widget([
+				'options' => [
+					'class' => 'alert-danger', //这里是提示框的class
+				],
+				'body' => $output, //消息体
+			]);
+		}
+	?>
 	<!-- scripts -->
     <script src="assets/admin/js/jquery-latest.js"></script>
     <script src="assets/admin/js/bootstrap.min.js"></script>
@@ -80,16 +101,9 @@
     <!-- pre load bg imgs -->
     <script type="text/javascript">
         $(function () {
-            // bg switcher
-            var $btns = $(".bg-switch .bg");
-            $btns.click(function (e) {
-                e.preventDefault();
-                $btns.removeClass("active");
-                $(this).addClass("active");
-                var bg = $(this).data("img");
-
-                $("html").css("background-image", "url('img/bgs/" + bg + "')");
-            });
+           setTimeout(function(){
+			   $("#w1").fadeOut();
+		   },3000);
 
         });
     </script>
