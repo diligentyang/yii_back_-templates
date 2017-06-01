@@ -49,7 +49,7 @@ $config = [
     ],
      'modules' => [
         'admin' => [
-            'class' => 'app\Modules\admin',
+            'class' => 'app\modules\admin',
         ],
     ],
     'params' => $params,
