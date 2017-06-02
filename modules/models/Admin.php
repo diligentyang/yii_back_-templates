@@ -73,9 +73,14 @@ class Admin extends ActiveRecord
 	public function seekPass($data){
 		$this->scenario = "seekpass";
 		if($this->load($data)&&$this->validate()){
-			echo "hahaha";
-			
+			$time = time();
+			$token = $this->createToken($data['admin']['adminuser'],$time);
+			echo $token;exit();
 		}
+	}
+	//根据时间戳和用户名生成token，加上用户ip
+	public function createToken($adminuser,$time){
+		return md5(md5($adminuser).base64_encode(Yii::$app->request->userIP).md5($time));
 	}
 	
 }
