@@ -72,4 +72,11 @@ class LoginController extends Controller
         
         return $this->render("mailchangepass", ['model'=>$model,'errors'=>$errors]);
 	}
+	
+	//退出
+	public function actionLogout()
+	{
+		Yii::$app->session->destroy();
+		return $this->redirect(['/admin/login']);
+	}
 }

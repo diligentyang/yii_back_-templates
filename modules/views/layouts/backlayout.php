@@ -98,7 +98,7 @@
 				</ul>
 			</li>
 			<li role="presentation" class="divider"></li>
-			<li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
+			<li><a href="<?php echo yii\helpers\Url::to(['login/logout']);?>"><span class="glyphicon glyphicon-log-out"></span> Login out</a></li>
 		</ul>
 	</div><!--/.sidebar-->
 	
