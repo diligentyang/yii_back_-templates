@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html class="login-bg">
 <head>
-	<title>ºóÌ¨¹ÜÀí</title>
+	<title>åŽå°ç®¡ç†</title>
     
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -41,17 +41,17 @@
 
 		<?php $form=ActiveForm::begin([
 			'fieldConfig' =>[
-				//'template'=>'{error}{label}{input}',//error ÊÇ´íÎóÐÅÏ¢£¬labelÊÇÄÇ¸öÊý¾Ý¿âµÄÁÐÃû×Ö£¬inputÊÇÔªËØ
+				//'template'=>'{error}{label}{input}',//error æ˜¯é”™è¯¯ä¿¡æ¯ï¼Œlabelæ˜¯é‚£ä¸ªæ•°æ®åº“çš„åˆ—åå­—ï¼Œinputæ˜¯å…ƒç´ 
 				'template'=>'{input}'
 			],
 		]);?>
         <div class="span4 box">
             <div class="content-wrap">
-                <h6>ÖØÖÃÃÜÂë</h6>
-				<?php echo $form->field($model, 'adminuser')->passwordInput(["class" => "span12", "placeholder" => "ÇëÊäÈëÃÜÂë"]); ?>
-				<?php echo $form->field($model, 'adminemail')->passwordInput(["class" => "span12", "placeholder" => "È·ÈÏÃÜÂë"]); ?>
-				 <a href="<?php echo yii\helpers\Url::to(['login/index']); ?>" class="forgot">·µ»ØµÇÂ¼</a>
-				<?php echo Html::submitButton('È·ÈÏÐÞ¸Ä', ["class" => "btn-glow primary login"]); ?>
+                <h6>é‡ç½®å¯†ç </h6>
+				<?php echo $form->field($model, 'adminuser')->passwordInput(["class" => "span12", "placeholder" => "è¯·è¾“å…¥å¯†ç "]); ?>
+				<?php echo $form->field($model, 'adminemail')->passwordInput(["class" => "span12", "placeholder" => "ç¡®è®¤å¯†ç "]); ?>
+				 <a href="<?php echo yii\helpers\Url::to(['login/index']); ?>" class="forgot">è¿”å›žç™»å½•</a>
+				<?php echo Html::submitButton('ç¡®è®¤ä¿®æ”¹', ["class" => "btn-glow primary login"]); ?>
             </div>
         </div>
 		<?php ActiveForm::end(); ?>
@@ -65,10 +65,10 @@
 				for($i=0;$i<count($val);$i++){
 					echo Alert::widget([
 						'options' => [
-							'class' => 'alert-danger danger_alt', //ÕâÀïÊÇÌáÊ¾¿òµÄclass
+							'class' => 'alert-danger danger_alt', //è¿™é‡Œæ˜¯æç¤ºæ¡†çš„class
 							'style' => 'text-align:center;',
 						],
-						'body' => $val[$i], //ÏûÏ¢Ìå
+						'body' => $val[$i], //æ¶ˆæ¯ä½“
 					]);
 				}
 			}
@@ -78,10 +78,10 @@
 		if (Yii::$app->session->hasFlash('info')) {
             echo Alert::widget([
 						'options' => [
-							'class' => 'alert-success danger_alt', //ÕâÀïÊÇÌáÊ¾¿òµÄclass
+							'class' => 'alert-success danger_alt', //è¿™é‡Œæ˜¯æç¤ºæ¡†çš„class
 							'style' => 'text-align:center;',
 						],
-						'body' => Yii::$app->session->getFlash('info'), //ÏûÏ¢Ìå
+						'body' => Yii::$app->session->getFlash('info'), //æ¶ˆæ¯ä½“
 					]);
         } 
 	?>

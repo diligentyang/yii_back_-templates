@@ -86,13 +86,15 @@ class Admin extends ActiveRecord
 	}
 	//根据时间戳和用户名生成token，加上用户ip
 	public function createToken($adminuser,$time){
-		return md5(md5($adminuser).base64_encode(Yii::$app->request->userIP).md5($time));
+		//var_dump(md5(md5($adminuser).base64_encode(Yii::$app->request->userIP).md5($time)));
+		//token中不能加ip，容易变化
+		return md5(md5($adminuser).base64_encode("后台管理").md5($time));
 	}
 	
 	/*重置密码*/
 	public function changePass()
 	{
-		return false;
+		
 	}
 	
 }
