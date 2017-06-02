@@ -9,7 +9,7 @@ Class BackController extends CommonController
 {
 	public function actionIndex()
 	{
-		$this->layout = false;
-		echo "后台首页";
+		$this->layout = "backlayout";
+		return $this->render('index');
 	}
 }
