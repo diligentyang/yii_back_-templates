@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     use yii\bootstrap\ActiveForm;
     use yii\helpers\Html;
 	use yii\bootstrap\Alert;
@@ -47,28 +47,10 @@
 		]);?>
         <div class="span4 box">
             <div class="content-wrap">
-                <h6>后台管理登录</h6>
+                <h6>找回密码</h6>
 				<?php echo $form->field($model, 'adminuser')->textInput(["class" => "span12", "placeholder" => "管理员账号"]); ?>
-				<?php echo $form->field($model, 'adminpass')->passwordInput(["class" => "span12", "placeholder" => "管理员密码"]); ?>
-				<!--
-			   <input class="span12" type="password" placeholder="管理员密码" />
-			   -->
-                <a href="<?php echo yii\helpers\Url::to(['login/seekpass']);?>" class="forgot">忘记密码?</a>
-		
-				<?php echo $form->field($model, 'rememberMe')->checkbox([
-                    'id' => 'remember-me',
-                    'template' => '<div class="remember">{input}<label for="remember-me">记住我</label></div>',
-                ]); ?>
-				<!--
-                <div class="remember">
-                    <input id="remember-me" type="checkbox" />
-                    <label for="remember-me">记住我</label>
-                </div>
-				-->
-				<?php echo Html::submitButton('登录', ["class" => "btn-glow primary login"]); ?>
-				<!--
-                <a class="btn-glow primary login" href="index.html">登录</a>
-				-->
+				<?php echo $form->field($model, 'adminemail')->textInput(["class" => "span12", "placeholder" => "管理员邮箱"]); ?>
+				<?php echo Html::submitButton('找回密码', ["class" => "btn-glow primary login"]); ?>
             </div>
         </div>
 		<?php ActiveForm::end(); ?>
