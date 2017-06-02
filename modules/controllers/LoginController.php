@@ -33,12 +33,11 @@ class LoginController extends Controller
 		$model = new Admin;
 		if(Yii::$app->request->isPost){
 			$post = Yii::$app->request->post();
-			/* if($model->login($post)) {
-				$this->redirect(['back/index']);
-				Yii::$app->end();
+			 if($model->seekPass($post)) {
+				echo "电子邮件发送成功!";
 			}else{
 				$errors = $model->getErrors();
-			} */
+			} 
 		}				
 		return $this->render('seekpass',['model'=>$model,'errors'=>$errors]);
 	}
