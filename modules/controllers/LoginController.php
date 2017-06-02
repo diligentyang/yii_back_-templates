@@ -34,7 +34,7 @@ class LoginController extends Controller
 		if(Yii::$app->request->isPost){
 			$post = Yii::$app->request->post();
 			 if($model->seekPass($post)) {
-				echo "电子邮件发送成功!";
+				Yii::$app->session->setFlash('info', '电子邮件已经发送成功，请查收');
 			}else{
 				$errors = $model->getErrors();
 			} 
@@ -42,4 +42,30 @@ class LoginController extends Controller
 		return $this->render('seekpass',['model'=>$model,'errors'=>$errors]);
 	}
 	
+	/*根据邮件链接重置密码*/
+	public function actionMailchangepass(){
+		$this->layout = false;
+        $time = Yii::$app->request->get("timestamp");
+        $adminuser = Yii::$app->request->get("adminuser");
+        $token = Yii::$app->request->get("token");
+        $model = new Admin;
+        $myToken = $model->createToken($adminuser, $time);
+		if ($token != $myToken) {
+            $this->redirect(['admin/login']);
+            Yii::$app->end();
+        }
+        if (time() - $time > 300000) {
+            $this->redirect(['admin/login']);
+            Yii::$app->end();
+        }
+		
+		if (Yii::$app->request->isPost) {
+            $post = Yii::$app->request->post();
+            if ($model->changePass($post)) {
+                Yii::$app->session->setFlash('info', '密码修改成功');
+            }
+        }
+        $model->adminuser = $adminuser;
+        return $this->render("mailchangepass", ['model' => $model]);
+	}
 }

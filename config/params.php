@@ -2,5 +2,5 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-	'mailer'=>'*****@163.com',
+	'mailer'=>'17839221935@163.com',
 ];
