@@ -50,6 +50,7 @@
                 <h6>找回密码</h6>
 				<?php echo $form->field($model, 'adminuser')->textInput(["class" => "span12", "placeholder" => "管理员账号"]); ?>
 				<?php echo $form->field($model, 'adminemail')->textInput(["class" => "span12", "placeholder" => "管理员邮箱"]); ?>
+				 <a href="<?php echo yii\helpers\Url::to(['login/index']); ?>" class="forgot">返回登录</a>
 				<?php echo Html::submitButton('找回密码', ["class" => "btn-glow primary login"]); ?>
             </div>
         </div>

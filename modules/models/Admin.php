@@ -75,7 +75,14 @@ class Admin extends ActiveRecord
 		if($this->load($data)&&$this->validate()){
 			$time = time();
 			$token = $this->createToken($data['admin']['adminuser'],$time);
-			echo $token;exit();
+			$mailer = Yii::$app->mailer->compose('seekpass', ['adminuser' => $data['Admin']['adminuser'], 'time' => $time, 'token' => $token]);
+			$mailer->setFrom("Yii::$app->params['mailer']");
+            $mailer->setTo($data['Admin']['adminemail']);
+            $mailer->setSubject("找回密码");
+            if ($mailer->send()) {
+				echo "6666666666";
+                return true;
+            }
 		}
 	}
 	//根据时间戳和用户名生成token，加上用户ip
