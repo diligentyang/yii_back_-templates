@@ -7,7 +7,7 @@
 
 <link href="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/css/bootstrap/bootstrap.min.css" rel="stylesheet">
 <link href="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/css/backstyle.css" rel="stylesheet">
-
+<link href="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <script src="js/respond.min.js"></script>
@@ -107,6 +107,22 @@
 	
 	<script src="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/js/jquery-1.11.1.min.js"></script>
 	<script src="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/js/bootstrap.min.js"></script>
+    <script src="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/js/jquery.mCustomScrollbar.js"></script>
+	<script>
+		(function($){
+            $(window).load(function(){
+                $("#sidebar-collapse").mCustomScrollbar({
+                    autoDraggerLength: false,
+                    theme: "dark-thin",
+                    mouseWheelPixels: 150,
+                    //autoHideScrollbar: true,
+					advanced:{
+						updateOnContentResize:true,
+					}
+                });
+            });
+        })(jQuery);
+	</script>
 </body>
 
 </html>
