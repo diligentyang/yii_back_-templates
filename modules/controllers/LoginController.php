@@ -61,11 +61,15 @@ class LoginController extends Controller
 		
 		if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
+			$model->adminuser = $adminuser;
             if ($model->changePass($post)) {
                 Yii::$app->session->setFlash('info', '密码修改成功');
-            }
+            }else{
+				//var_dump($model->getErrors());exit();
+				$errors = $model->getErrors();
+			} 
         }
-        $model->adminuser = $adminuser;
-        return $this->render("mailchangepass", ['model' => $model]);
+        
+        return $this->render("mailchangepass", ['model'=>$model,'errors'=>$errors]);
 	}
 }

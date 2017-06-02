@@ -48,8 +48,8 @@
         <div class="span4 box">
             <div class="content-wrap">
                 <h6>重置密码</h6>
-				<?php echo $form->field($model, 'adminuser')->passwordInput(["class" => "span12", "placeholder" => "请输入密码"]); ?>
-				<?php echo $form->field($model, 'adminemail')->passwordInput(["class" => "span12", "placeholder" => "确认密码"]); ?>
+				<?php echo $form->field($model, 'adminpass')->passwordInput(["class" => "span12", "placeholder" => "请输入密码"]); ?>
+				<?php echo $form->field($model, 'repass')->passwordInput(["class" => "span12", "placeholder" => "确认密码"]); ?>
 				 <a href="<?php echo yii\helpers\Url::to(['login/index']); ?>" class="forgot">返回登录</a>
 				<?php echo Html::submitButton('确认修改', ["class" => "btn-glow primary login"]); ?>
             </div>

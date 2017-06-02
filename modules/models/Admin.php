@@ -7,7 +7,7 @@ use Yii;
 class Admin extends ActiveRecord
 {
 	public $rememberMe = true;
-	
+	public $repass;
 	public static function tableName()
     {
         return "{{%admin}}";
@@ -17,12 +17,14 @@ class Admin extends ActiveRecord
 	{
 		return [
 			['adminuser','required','message'=>'管理员账号不能为空','on'=>['login','seekpass']],
-			['adminpass','required','message'=>'管理员密码不能为空','on'=>'login'],
+			['adminpass','required','message'=>'管理员密码不能为空','on'=>['login','changepass']],
 			['rememberMe', 'boolean', 'on' => 'login'],
 			['adminpass','validatePass','on'=>'login'],
 			['adminemail','required','message'=>'管理员邮箱不能为空','on'=>'seekpass'],
 			['adminemail','email','message'=>'邮箱格式不正确','on'=>'seekpass'],
-			['adminemail','validateEmail','on'=>'seekpass']
+			['adminemail','validateEmail','on'=>'seekpass'],
+			['repass','required','message'=>'确认密码不能为空','on'=>'changepass'],
+			['repass','compare','compareAttribute' => 'adminpass','message'=>'两次密码输入不一致','on'=>'changepass']
 		];
 	}
 	//登录时验证账号密码是否正确
@@ -92,9 +94,13 @@ class Admin extends ActiveRecord
 	}
 	
 	/*重置密码*/
-	public function changePass()
+	public function changePass($data)
 	{
-		
+		$this->scenario = "changepass";
+        if ($this->load($data) && $this->validate()) {
+            return (bool)$this->updateAll(['adminpass' => md5($this->adminpass)], 'adminuser = :user', [':user' => $this->adminuser]);
+        }
+        return false;
 	}
 	
 }
