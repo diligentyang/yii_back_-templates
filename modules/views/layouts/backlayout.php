@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lumino - Dashboard</title>
+<title>后台管理系统</title>
 
 <link href="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/css/bootstrap/bootstrap.min.css" rel="stylesheet">
 <link href="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/css/backstyle.css" rel="stylesheet">
@@ -47,7 +47,7 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="index.html"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+			<li class="active"><a href="<?php yii\helpers\Url::to(['back/index']);?>"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
 			<li><a href="widgets.html"><span class="glyphicon glyphicon-th"></span> Widgets</a></li>
 			<li><a href="charts.html"><span class="glyphicon glyphicon-stats"></span> Charts</a></li>
 			<li><a href="tables.html"><span class="glyphicon glyphicon-list-alt"></span> Tables</a></li>
@@ -102,7 +102,10 @@
 		</ul>
 	</div><!--/.sidebar-->
 	
-	<?php echo $content;?>
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+		<?php echo $content;?>
+	</div>	<!--/.main-->
+	
 	
 	
 	<script src="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/js/jquery-1.11.1.min.js"></script>
