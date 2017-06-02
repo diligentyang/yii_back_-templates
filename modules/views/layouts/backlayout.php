@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lumino - Dashboard</title>
 
-<link href="<?php echo \Yii::$app->request->baseUrl;?>/assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/datepicker3.css" rel="stylesheet">
-<link href="css/styles.css" rel="stylesheet">
+<link href="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/css/backstyle.css" rel="stylesheet">
 
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
@@ -26,7 +25,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>Lumino</span>Admin</a>
+				<a class="navbar-brand" href="#"><span>鍚庡彴绠＄悊</span>Admin</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
@@ -40,7 +39,7 @@
 			</div>
 		</div><!-- /.container-fluid -->
 	</nav>
-	
+		
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<form role="search">
 			<div class="form-group">
@@ -76,40 +75,38 @@
 					</li>
 				</ul>
 			</li>
+			<li class="parent ">
+				<a href="#">
+					<span class="glyphicon glyphicon-list"></span> Dropdown <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
+				</a>
+				<ul class="children collapse" id="sub-item-2">
+					<li>
+						<a class="" href="#">
+							<span class="glyphicon glyphicon-share-alt"></span> Sub Item 1
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
+							<span class="glyphicon glyphicon-share-alt"></span> Sub Item 2
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
+							<span class="glyphicon glyphicon-share-alt"></span> Sub Item 3
+						</a>
+					</li>
+				</ul>
+			</li>
 			<li role="presentation" class="divider"></li>
 			<li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
 		</ul>
-		<div class="attribution">More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></div>
 	</div><!--/.sidebar-->
 	
 	<?php echo $content;?>
 	
 	
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script>
-		$('#calendar').datepicker({
-		});
-
-		!function ($) {
-		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
-		        $(this).find('em:first').toggleClass("glyphicon-minus");      
-		    }); 
-		    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-		}(window.jQuery);
-
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-		})
-	</script>	
+	<script src="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/js/jquery-1.11.1.min.js"></script>
+	<script src="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/js/bootstrap.min.js"></script>
 </body>
 
 </html>
