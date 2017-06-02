@@ -10,6 +10,6 @@ Class BackController extends CommonController
 	public function actionIndex()
 	{
 		$this->layout = false;
-		echo "บ๓ฬจสืาณ";
+		echo "ๅๅฐ้ฆ–้กต";
 	}
 }
