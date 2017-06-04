@@ -16,15 +16,15 @@ class Admin extends ActiveRecord
 	public function rules()
 	{
 		return [
-			['adminuser','required','message'=>'管理员账号不能为空','on'=>['login','seekpass']],
-			['adminpass','required','message'=>'管理员密码不能为空','on'=>['login','changepass']],
+			['adminuser','required','message'=>'管理员账号不能为空','on'=>['login','seekpass','addmanager']],
+			['adminpass','required','message'=>'管理员密码不能为空','on'=>['login','changepass','addmanager']],
 			['rememberMe', 'boolean', 'on' => 'login'],
 			['adminpass','validatePass','on'=>'login'],
-			['adminemail','required','message'=>'管理员邮箱不能为空','on'=>'seekpass'],
-			['adminemail','email','message'=>'邮箱格式不正确','on'=>'seekpass'],
+			['adminemail','required','message'=>'管理员邮箱不能为空','on'=>['seekpass','addmanager']],
+			['adminemail','email','message'=>'邮箱格式不正确','on'=>['seekpass','addmanager']],
 			['adminemail','validateEmail','on'=>'seekpass'],
-			['repass','required','message'=>'确认密码不能为空','on'=>'changepass'],
-			['repass','compare','compareAttribute' => 'adminpass','message'=>'两次密码输入不一致','on'=>'changepass']
+			['repass','required','message'=>'确认密码不能为空','on'=>['changepass','addmanager']],
+			['repass','compare','compareAttribute' => 'adminpass','message'=>'两次密码输入不一致','on'=>['changepass','addmanager']]
 		];
 	}
 	//登录时验证账号密码是否正确
@@ -99,6 +99,19 @@ class Admin extends ActiveRecord
 		$this->scenario = "changepass";
         if ($this->load($data) && $this->validate()) {
             return (bool)$this->updateAll(['adminpass' => md5($this->adminpass)], 'adminuser = :user', [':user' => $this->adminuser]);
+        }
+        return false;
+	}
+	
+	/*添加管理员*/
+	public function addmanager($data){
+		$this->scenario = "addmanager";
+		 if ($this->load($data) && $this->validate()) {
+           /*  $this->adminpass = md5($this->adminpass);
+            if ($this->save(false)) {
+                return true;
+            } */
+            return true;
         }
         return false;
 	}

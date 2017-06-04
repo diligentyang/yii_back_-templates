@@ -128,7 +128,18 @@
 		
 		$(document).ready(function(){
 			$("#subadd").click(function(){
-				alert($("#addmanager").serialize());
+				$.ajax({
+					url:"<?php echo yii\helpers\Url::to(['back/addmanager']);?>",
+					type:'post',
+					dataType: "json",
+					data:$("#addmanager").serialize(),
+					error:function(){
+						alert("ajax 请求错误");
+					},
+					success:function($data,$status){
+						console.log($data);
+					}
+				})
 			});
 		});
 	</script>

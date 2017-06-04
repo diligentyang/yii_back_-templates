@@ -61,30 +61,33 @@ echo LinkPager::widget([
 				$form = ActiveForm::begin([
 					'id' => 'addmanager',
 					'options' => ['class'=>'form-horizontal'],
+					'fieldConfig' =>[
+							'template'=>'{input}',
+					],
 				]);
 			?>
 				  <div class="form-group">
 					<label for="adminuser" class="col-sm-3 control-label">管理员账号</label>
 					<div class="col-sm-9">
-					  <input type="text" class="form-control" name="adminuser" id="adminuser" placeholder="管理员账号">
+					  <?php echo $form->field($model, 'adminuser')->textInput(["class" => "form-control","id"=>"adminuser", "placeholder" => "管理员账号"]); ?>
 					</div>
 				  </div>
 				  <div class="form-group">
 					<label for="adminemail" class="col-sm-3 control-label">管理员邮箱</label>
 					<div class="col-sm-9">
-					  <input type="email" class="form-control" name="adminemail" id="adminemail" placeholder="管理员邮箱">
+					  <?php echo $form->field($model, 'adminemail')->textInput(["class" => "form-control","id"=>"adminemail", "placeholder" => "管理员邮箱"]); ?>
 					</div>
 				  </div>
 				   <div class="form-group">
 					<label for="adminpass" class="col-sm-3 control-label">密码</label>
 					<div class="col-sm-9">
-					  <input type="password" class="form-control" name="adminpass" id="adminpass" placeholder="密码">
+					  <?php echo $form->field($model, 'adminpass')->passwordInput(["class" => "form-control","id"=>"adminpass", "placeholder" => "密码"]); ?>
 					</div>
 				  </div>
 				   <div class="form-group">
 					<label for="repass" class="col-sm-3 control-label">确认密码</label>
 					<div class="col-sm-9">
-					  <input type="password" class="form-control" name="repass" id="repass" placeholder="确认密码">
+					  <?php echo $form->field($model, 'repass')->passwordInput(["class" => "form-control","id"=>"repass", "placeholder" => "确认密码"]); ?>
 					</div>
 				  </div>
 			<?php ActiveForm::end() ?>
