@@ -107,10 +107,11 @@ class Admin extends ActiveRecord
 	public function addmanager($data){
 		$this->scenario = "addmanager";
 		 if ($this->load($data) && $this->validate()) {
-           /*  $this->adminpass = md5($this->adminpass);
+			$this->createtime = time();
+            $this->adminpass = md5($this->adminpass);
             if ($this->save(false)) {
                 return true;
-            } */
+            }
             return true;
         }
         return false;

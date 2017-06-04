@@ -155,8 +155,12 @@
 						alert("ajax 请求错误");
 					},
 					success:function(data,status){
-						$('#errorsm').modal('show');
-						$("#errorcontent").html(data.errors);
+						if(typeof(data.success) == "undefined" || data.success!="ok"){
+							$("#errorcontent").html(data.errors);
+							$('#errorsm').modal('show');
+						}else{
+							window.location.reload();//刷新当前页
+						}
 					}
 				})
 			});
