@@ -54,13 +54,40 @@ echo LinkPager::widget([
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">添加管理员</h4>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary">确定</button>
-      </div>
-    </div>
+	  <form class="form-horizontal">
+		  <div class="modal-body">
+			
+				  <div class="form-group">
+					<label for="inputEmail3" class="col-sm-3 control-label">管理员账号</label>
+					<div class="col-sm-9">
+					  <input type="email" class="form-control" id="inputEmail3" placeholder="管理员账号">
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="inputPassword3" class="col-sm-3 control-label">管理员邮箱</label>
+					<div class="col-sm-9">
+					  <input type="password" class="form-control" id="inputPassword3" placeholder="管理员邮箱">
+					</div>
+				  </div>
+				   <div class="form-group">
+					<label for="inputPassword3" class="col-sm-3 control-label">密码</label>
+					<div class="col-sm-9">
+					  <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+					</div>
+				  </div>
+				   <div class="form-group">
+					<label for="inputPassword3" class="col-sm-3 control-label">确认密码</label>
+					<div class="col-sm-9">
+					  <input type="password" class="form-control" id="inputPassword3" placeholder="确认密码">
+					</div>
+				  </div>
+			
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			<button type="button" class="btn btn-primary">确定</button>
+		  </div>
+	  </form>
+	</div>
   </div>
 </div>
