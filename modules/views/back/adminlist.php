@@ -96,7 +96,6 @@ echo LinkPager::widget([
 			<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 			<button type="button" class="btn btn-primary" id="subadd">确定</button>
 		  </div>
-
 	</div>
   </div>
 </div>

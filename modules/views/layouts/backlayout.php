@@ -106,6 +106,24 @@
 		<?php echo $content;?>
 	</div>	<!--/.main-->
 	
+	<!--错误提示，小模态框-->
+	<div class="modal fade bs-example-modal-sm" id="errorsm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				<h4 class="modal-title" id="mySmallModalLabel">错误提示：</h4>
+			</div>
+			<div class="modal-body" id="errorcontent">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+			</div>
+		</div>
+	  </div>
+	</div>
 	
 	
 	<script src="<?php echo \Yii::$app->request->baseUrl;?>/assets/admin/js/jquery-1.11.1.min.js"></script>
@@ -136,8 +154,9 @@
 					error:function(){
 						alert("ajax 请求错误");
 					},
-					success:function($data,$status){
-						console.log($data);
+					success:function(data,status){
+						$('#errorsm').modal('show');
+						$("#errorcontent").html(data.errors);
 					}
 				})
 			});
