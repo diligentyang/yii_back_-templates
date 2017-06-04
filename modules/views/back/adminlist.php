@@ -13,7 +13,7 @@
 <div class="row">
 	<div class="col-md-12" style="height:80px;">
 		<h3 class="pull-left">管理员列表</h3>
-		<button type="button" class="btn btn-success pull-right" style="margin-top:20px;" data-toggle="modal" data-target="#add">添加管理员</button>
+		<button type="button" class="btn btn-success pull-right" style="margin-top:20px;" data-toggle="modal" data-target="#add"> + 添加管理员</button>
 	</div>
 </div>
 <table class="table">
