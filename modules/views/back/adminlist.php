@@ -29,9 +29,11 @@
         </tr>
       </thead>
       <tbody>
-		<?php foreach($managers as $manager):?>
+		<?php 
+		foreach($managers as $manager):
+		?>
 			<tr>
-			  <th scope="row">1</th>
+			  <th scope="row"> - </th>
 			  <td><?php echo $manager->adminuser; ?></td>
 			  <td> <?php echo $manager->adminemail; ?></td>
 			  <td><?php echo date('Y-m-d H:i:s', $manager->logintime); ?></td>
@@ -42,12 +44,13 @@
 		<?php endforeach;?>
       </tbody>
     </table>
-<?php
-echo LinkPager::widget([
-    'pagination' => $pagination,
-]);
-?>
-	
+		<?php
+		echo LinkPager::widget([
+			'pagination' => $pagination,
+			'prevPageLabel' => '&#8249;', 
+			'nextPageLabel' => '&#8250;'
+		]);
+		?>
 <!-- Modal -->
 <div class="modal fade" id="add" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

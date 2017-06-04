@@ -23,7 +23,7 @@ Class BackController extends CommonController
 		$model = new Admin;
 		$data = Admin::find();
 		$count = $data->count();
-		$pageSize = 1;
+		$pageSize = Yii::$app->params['adminlist_pagesize'];
 		$pagination = new Pagination(['totalCount' => $count,'pageSize' => $pageSize]);
 		$managers = $data->offset($pagination->offset)->limit($pagination->limit)->all();
 		return $this->render('adminlist',['managers'=>$managers,'pagination'=>$pagination,'model'=>$model]);
