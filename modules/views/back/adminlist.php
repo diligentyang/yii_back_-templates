@@ -8,7 +8,7 @@
 <div class="row">
 	<div class="col-md-12" style="height:80px;">
 		<h3 class="pull-left">管理员列表</h3>
-		<button type="button" class="btn btn-success pull-right" style="margin-top:20px;">添加管理员</button>
+		<button type="button" class="btn btn-success pull-right" style="margin-top:20px;" data-toggle="modal" data-target="#add">添加管理员</button>
 	</div>
 </div>
 <table class="table">
@@ -53,3 +53,23 @@
         </tr>
       </tbody>
     </table>
+	
+	
+<!-- Modal -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加管理员</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
