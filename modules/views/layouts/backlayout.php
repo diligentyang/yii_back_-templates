@@ -47,8 +47,8 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="<?php yii\helpers\Url::to(['back/index']);?>"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
-			<li><a href="widgets.html"><span class="glyphicon glyphicon-th"></span> Widgets</a></li>
+			<li class="active"><a href="<?php echo yii\helpers\Url::to(['back/index']);?>"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+			<li><a href="<?php echo yii\helpers\Url::to(['/admin/back/adminlist']);?>"><span class="glyphicon glyphicon-user"></span> 管理员管理</a></li>
 			<li><a href="charts.html"><span class="glyphicon glyphicon-stats"></span> Charts</a></li>
 			<li><a href="tables.html"><span class="glyphicon glyphicon-list-alt"></span> Tables</a></li>
 			<li><a href="forms.html"><span class="glyphicon glyphicon-pencil"></span> Forms</a></li>
