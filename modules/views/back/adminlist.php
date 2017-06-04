@@ -1,3 +1,6 @@
+<?php
+	use yii\widgets\LinkPager;
+?>
 <div class="row">
 			<ol class="breadcrumb">
 				<li><a href="<?php echo yii\helpers\Url::to(['back/index']);?>"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -24,36 +27,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>Thornton</td>
-          <td>Thornton</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>the Bird</td>
-          <td>the Bird</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+		<?php foreach($managers as $manager):?>
+			<tr>
+			  <th scope="row">1</th>
+			  <td><?php echo $manager->adminuser; ?></td>
+			  <td> <?php echo $manager->adminemail; ?></td>
+			  <td><?php echo date('Y-m-d H:i:s', $manager->logintime); ?></td>
+			  <td> <?php echo long2ip($manager->loginip); ?></td>
+			  <td> <?php echo date("Y-m-d H:i:s", $manager->createtime); ?></td>
+			  <td>删除</td>
+			</tr>
+		<?php endforeach;?>
       </tbody>
     </table>
-	
+<?php
+echo LinkPager::widget([
+    'pagination' => $pagination,
+]);
+?>
 	
 <!-- Modal -->
 <div class="modal fade" id="add" tabindex="-1" role="dialog">
