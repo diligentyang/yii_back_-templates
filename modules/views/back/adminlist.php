@@ -62,7 +62,7 @@ echo LinkPager::widget([
 					'id' => 'addmanager',
 					'options' => ['class'=>'form-horizontal'],
 					'fieldConfig' =>[
-							'template'=>'{input}',
+							'template'=>'{input}{error}',
 					],
 				]);
 			?>

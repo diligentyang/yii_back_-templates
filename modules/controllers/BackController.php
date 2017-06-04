@@ -39,6 +39,12 @@ Class BackController extends CommonController
 				echo json_encode(['success'=>'ok']);
 			}else{
 				$errors = $model->getErrors();
+				$arr = [];
+				foreach($errors as $val){	
+					for($i=0;$i<count($val);$i++){
+						$arr[] = $val[$i];
+					}
+				}
 				echo json_encode(['errors'=>$errors]);
 			}
 		}else{
