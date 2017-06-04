@@ -125,6 +125,12 @@
                 });
             });
         })(jQuery);
+		
+		$(document).ready(function(){
+			$("#subadd").click(function(){
+				alert($("#addmanager").serialize());
+			});
+		});
 	</script>
 </body>
 
