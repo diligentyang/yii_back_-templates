@@ -35,7 +35,7 @@ class Admin extends ActiveRecord
 			if(is_null($data)){
 				$this->addError("adminpass", "用户名或者密码错误");
 			}else{
-				//验证密码是否正确，第一个参数为用户输入的密码，第二个参数为hash即数据库保存的加密密码
+				//验证密码是否正确，第一个参数为用户输入的密码，第二个参数为hash即数据库保存的加密密码。
 				if(!Yii::$app->getSecurity()->validatePassword($this->adminpass,$data->adminpass)){
 					$this->addError("adminpass","用户名或密码错误");
 				}
