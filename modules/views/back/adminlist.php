@@ -20,7 +20,7 @@
 
 <!--Errors-->
 <?php
-if(!empty(\Yii::$app->session->getFlash("info"))){	
+if(\Yii::$app->session->hasFlash("info")){	
 		echo Alert::widget([
 			'options' => [
 				'class' => 'alert-info danger_alt', //这里是提示框的class

@@ -108,7 +108,7 @@ class Admin extends ActiveRecord
 		$this->scenario = "addmanager";
 		 if ($this->load($data) && $this->validate()) {
 			$this->createtime = time();
-            $this->adminpass = md5($this->adminpass);
+            $this->adminpass = Yii::$app->getSecurity()->generatePasswordHash($this->adminpass);
             if ($this->save(false)) {
                 return true;
             }
