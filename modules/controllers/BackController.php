@@ -70,4 +70,6 @@ Class BackController extends CommonController
 			Yii::$app->session->setFlash('info','删除失败');
 		}
 	}
+	
+	
 }
