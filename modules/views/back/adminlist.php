@@ -2,6 +2,7 @@
 	use yii\widgets\LinkPager;
 	use yii\helpers\Html;
 	use yii\widgets\ActiveForm;
+	use yii\bootstrap\Alert;
 ?>
 <div class="row">
 			<ol class="breadcrumb">
@@ -16,6 +17,20 @@
 		<button type="button" class="btn btn-success pull-right" style="margin-top:20px;" data-toggle="modal" data-target="#add"> + 添加管理员</button>
 	</div>
 </div>
+
+<!--Errors-->
+<?php
+if(!empty(\Yii::$app->session->getFlash("info"))){	
+		echo Alert::widget([
+			'options' => [
+				'class' => 'alert-info danger_alt', //这里是提示框的class
+				'style' => 'text-align:center;',
+			],
+			'body' => \Yii::$app->session->getFlash("info"), //消息体
+		]);		
+}
+?>		
+
 <table class="table">
       <thead>
         <tr>
@@ -39,7 +54,7 @@
 			  <td><?php echo date('Y-m-d H:i:s', $manager->logintime); ?></td>
 			  <td> <?php echo long2ip($manager->loginip); ?></td>
 			  <td> <?php echo date("Y-m-d H:i:s", $manager->createtime); ?></td>
-			  <td>删除</td>
+			  <td><a href="<?php echo yii\helpers\Url::to(['back/delmanager','adminid'=>$manager->adminid]);?>">删除</a></td>
 			</tr>
 		<?php endforeach;?>
       </tbody>
@@ -51,6 +66,8 @@
 			'nextPageLabel' => '&#8250;'
 		]);
 		?>
+		
+
 <!-- Modal -->
 <div class="modal fade" id="add" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

@@ -51,4 +51,23 @@ Class BackController extends CommonController
 			echo json_encode(['errors'=>'请求非法']);
 		}
 	}
+	
+	/*删除管理员*/
+	public function actionDelmanager()
+	{
+		$adminid = intval(Yii::$app->request->get("adminid"));
+		if(empty($adminid) || $adminid == 1){
+			$this->redirect(['back/adminlist']);
+			Yii::$app->session->setFlash('info','该用户不可删除');
+			return false;
+		}
+		$model = new Admin;
+		if($model->deleteAll("adminid = :id",[':id'=>$adminid])){
+			Yii::$app->session->setFlash('info', '删除成功');
+			$this->redirect(['back/adminlist']);
+			return false;
+		}else{
+			Yii::$app->session->setFlash('info','删除失败');
+		}
+	}
 }
