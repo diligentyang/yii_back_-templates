@@ -31,9 +31,13 @@ class Admin extends ActiveRecord
 	public function validatePass()
 	{
 		if(!$this->hasErrors()){
-			$data = self::find()->where('adminuser=:user and adminpass=:pass',[":user"=>$this->adminuser,":pass"=>md5($this->adminpass)])->one();
+			$data = self::find()->where('adminuser=:user',[":user"=>$this->adminuser])->one();
 			if(is_null($data)){
 				$this->addError("adminpass", "用户名或者密码错误");
+			}else{
+				if(!Yii::$app->getSecurity()->validatePassword($this->adminpass,$data->adminpass)){
+					$this->addError("adminpass","用户名或密码错误");
+				}
 			}
 			
 		}
@@ -98,7 +102,7 @@ class Admin extends ActiveRecord
 	{
 		$this->scenario = "changepass";
         if ($this->load($data) && $this->validate()) {
-            return (bool)$this->updateAll(['adminpass' => md5($this->adminpass)], 'adminuser = :user', [':user' => $this->adminuser]);
+            return (bool)$this->updateAll(['adminpass' => Yii::$app->getSecurity()->generatePasswordHash($this->adminpass)], 'adminuser = :user', [':user' => $this->adminuser]);
         }
         return false;
 	}
