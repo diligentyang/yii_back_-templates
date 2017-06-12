@@ -17,7 +17,7 @@
 				 'labelOptions'=>['class'=>'col-sm-2 control-label'],
 			],
 			'options' => [
-				'class' => 'form-horizontal col-sm-6',
+				'class' => 'form-horizontal col-sm-10',
 			],
 		]);
 		
