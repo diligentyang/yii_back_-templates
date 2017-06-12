@@ -11,6 +11,6 @@ class CategoryController extends CommonController
 	
 	public function actionAddcategory()
 	{
-		echo "2222222";
+		return $this->render('addcategory');
 	}
 }

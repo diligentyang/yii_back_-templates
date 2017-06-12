@@ -15,8 +15,8 @@ class Category extends ActiveRecord
 	public function attributeLabels()
     {
         return [
-            'parentid' => '上级分类',
-            'title' => '分类名称'
+            'parentid' => '涓婄骇鍒嗙被',
+            'title' => '鍒嗙被鍚嶇О'
         ];
     }
 	
