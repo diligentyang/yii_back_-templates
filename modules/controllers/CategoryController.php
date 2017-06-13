@@ -24,4 +24,9 @@ class CategoryController extends CommonController
 		array_unshift($list,"添加顶级分类");
 		return $this->render('addcategory',['list'=>$list,'model'=>$model]);
 	}
+	
+	public function actionCategorylist(){
+		
+		return $this->render('categorylist');
+	}
 }
