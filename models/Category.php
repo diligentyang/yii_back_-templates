@@ -26,7 +26,9 @@ class Category extends ActiveRecord
 		$list = self::find()->all();
 		$list = \yii\helpers\ArrayHelper::toArray($list);//转换成数组形式
 		$list = $this->getOptions($list);//无限极分类
+		dump($list);
 		$list = $this->addPrefix($list);//去除多余项，添加前缀
+		dump($list);
 		return $list;
 	}
 	
@@ -53,7 +55,7 @@ class Category extends ActiveRecord
 	public function addPrefix($list,$prefix="|---"){
 		$arr = [];
 		foreach($list as $val){//将$prefix重复level次，拼接到原title处
-			$arr[] = str_repeat($prefix,$val['level']).$val['title'];
+			$arr[$val['cateid']] = str_repeat($prefix,$val['level']).$val['title'];
 		}
 		return $arr;
 	}
