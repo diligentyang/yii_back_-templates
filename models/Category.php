@@ -25,10 +25,8 @@ class Category extends ActiveRecord
 		//$list = $model->find()->asArray()->all();
 		$list = self::find()->all();
 		$list = \yii\helpers\ArrayHelper::toArray($list);//转换成数组形式
-		$list = $this->getOptions($list);//无限极分类
-		dump($list);
+		$list = $this->getOptions($list);//无限极分类	
 		$list = $this->addPrefix($list);//去除多余项，添加前缀
-		dump($list);
 		return $list;
 	}
 	
