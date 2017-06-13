@@ -25,7 +25,7 @@ class Category extends ActiveRecord
 		//$list = $model->find()->asArray()->all();
 		$list = self::find()->all();
 		$list = \yii\helpers\ArrayHelper::toArray($list);//转换成数组形式
-		$list = $this->getOptions($list);//无限极分类	
+		$list = $this->getOptionsStack($list);//无限极分类	
 		$list = $this->addPrefix($list);//去除多余项，添加前缀
 		return $list;
 	}
@@ -47,6 +47,33 @@ class Category extends ActiveRecord
 		}
 		
 		return $arrTree;
+	}
+	
+	//获取排序后的分类，非递归算法
+	public function getOptionsStack($list)
+	{
+		$list = array_reverse($list);
+		$arr = [];
+		$temp = [];
+		foreach($list as $key=>$val){
+			if($val['parentid']==0){
+				$val['level'] = 1;
+				unset($list[$key]);
+				array_push($temp,$val);
+			}
+		}
+		while(count($temp)>0){
+			$par = array_pop($temp);
+			$arr[] = $par;
+			foreach($list as $key=>$val){
+				if($val['parentid']==$par['cateid']){
+					$val['level'] = $par['level']+1;
+					unset($list[$key]);
+					array_push($temp,$val);
+				}
+			}
+		}
+		return $arr;
 	}
 	
 	//添加前缀 |--- 并且去除多余项
