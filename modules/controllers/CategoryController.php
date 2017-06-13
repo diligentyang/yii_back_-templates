@@ -13,10 +13,7 @@ class CategoryController extends CommonController
 	public function actionAddcategory()
 	{
 		$model = new Category();
-		//$list = $model->find()->asArray()->all();
-		$list = $model->find()->all();
-		$list = \yii\helpers\ArrayHelper::toArray($list);//转换成数组形式
-		//var_dump($list);exit();
+		$list = $model->getCategoryOptions();
 		return $this->render('addcategory',['list'=>$list,'model'=>$model]);
 	}
 }
