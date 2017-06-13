@@ -20,14 +20,31 @@ class Category extends ActiveRecord
         ];
     }
 	
+	 public function rules()
+    {
+        return [
+            ['parentid', 'required', 'message' => '上级分类不能为空'],
+            ['title', 'required', 'message' => '标题名称不能为空'],
+            ['createtime', 'safe']
+        ];
+    }
+	
 	public function getCategoryOptions()
 	{
 		//$list = $model->find()->asArray()->all();
 		$list = self::find()->all();
 		$list = \yii\helpers\ArrayHelper::toArray($list);//转换成数组形式
 		$list = $this->getOptions($list);//无限极分类	
-		$list = $this->addPrefix($list);//去除多余项，添加前缀
+		$list = $this->addPrefix($list);//去除多余项，添加前缀	
 		return $list;
+	}
+	
+	public function addCat($data){
+		$data['Category']['createtime'] = time();
+        if ($this->load($data) && $this->save()) {
+            return true;
+        }
+        return false;
 	}
 	
 	//获取排序后的分类，递归算法
@@ -102,14 +119,12 @@ class Category extends ActiveRecord
 	public function getOptionsAnother($list,$root=0){
 		// 创建Tree
 		$tree = array();
-		dump($list);
 		if(is_array($list)) {
 			// 创建基于主键的数组引用
 			$refer = array();
 			foreach ($list as $key => $data) {
 				$refer[$data['cateid']] =& $list[$key];
 			}
-			dump($refer);
 			foreach ($list as $key => $data) {
 				// 判断是否存在parent
 				$parentId =  $data['parentid'];
