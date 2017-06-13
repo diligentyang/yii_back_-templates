@@ -20,8 +20,18 @@ class CategoryController extends CommonController
 				Yii::$app->session->setFlash("info","添加成功");
 			}
 		}
+		$options = [];
 		$list = $model->getCategoryOptions();
-		array_unshift($list,"添加顶级分类");
-		return $this->render('addcategory',['list'=>$list,'model'=>$model]);
+		foreach($list as $cate){
+			$options[$cate['cateid']] = $cate['title'];
+		}
+		array_unshift($options,"添加顶级分类");
+		return $this->render('addcategory',['list'=>$options,'model'=>$model]);
+	}
+	
+	public function actionCategorylist(){
+		$model = new Category;
+		$data = $model->getCategoryOptions();
+		return $this->render('categorylist',['data'=>$data,'model'=>$model]);
 	}
 }

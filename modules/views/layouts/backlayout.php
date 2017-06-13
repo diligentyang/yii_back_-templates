@@ -55,7 +55,7 @@
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 					<li>
-						<a class="" href="#">
+						<a class="" href="<?php echo yii\helpers\Url::to(['category/categorylist']);?>">
 							<span class="glyphicon glyphicon-share-alt"></span> 分类列表
 						</a>
 					</li>
