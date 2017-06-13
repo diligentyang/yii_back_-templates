@@ -13,7 +13,7 @@ class CategoryController extends CommonController
 	public function actionAddcategory()
 	{
 		$model = new Category();
-		$list = $model->find()->column();
+		$list = $model->getCategoryOptions();
 		return $this->render('addcategory',['list'=>$list,'model'=>$model]);
 	}
 }
