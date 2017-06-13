@@ -145,7 +145,8 @@ class Category extends ActiveRecord
 	public function addPrefix($list,$prefix="|---"){
 		$arr = [];
 		foreach($list as $val){//将$prefix重复level次，拼接到原title处
-			$arr[$val['cateid']] = str_repeat($prefix,$val['level']).$val['title'];
+			$val['title'] = str_repeat($prefix,$val['level']).$val['title'];
+			$arr[$val['cateid']] = $val;
 		}
 		return $arr;
 	}

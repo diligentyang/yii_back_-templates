@@ -16,7 +16,6 @@
 		<a type="button" class="btn btn-success pull-right" style="margin-top:20px;" href="<?php echo yii\helpers\Url::to(['category/addcategory']);?>"> + 添加分类 </a>
 	</div>
 </div>
-
 <table class="table">
       <thead>
         <tr>
@@ -27,11 +26,15 @@
         </tr>
       </thead>
       <tbody>
+		<?php
+			foreach($data as $val):
+		?>
 			<tr>
-			  <th> - </th>
-			  <td>22222</td>
-			  <td>333333333</td>
-			  <td><a href="<?php echo yii\helpers\Url::to(['back/delmanager','adminid'=>$manager->adminid]);?>">删除</a></td>
+			  <th><?php echo $val['cateid'];?></th>
+			  <td><?php echo $val['title'];?></td>
+			  <td><?php echo $val['createtime'];?></td>
+			  <td><a href="<?php echo yii\helpers\Url::to(['category/delcategory','cateid'=>$val['cateid']]);?>">删除</a></td>
 			</tr>
+		<?php endforeach;?>
       </tbody>
     </table>
