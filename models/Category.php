@@ -25,7 +25,7 @@ class Category extends ActiveRecord
 		//$list = $model->find()->asArray()->all();
 		$list = self::find()->all();
 		$list = \yii\helpers\ArrayHelper::toArray($list);//转换成数组形式
-		$list = $this->getOptionsStack($list);//无限极分类	
+		$list = $this->getOptions($list);//无限极分类	
 		$list = $this->addPrefix($list);//去除多余项，添加前缀
 		return $list;
 	}
@@ -42,20 +42,20 @@ class Category extends ActiveRecord
 				$val['level'] = $level;
 				$arrTree[] = $val;
 				unset($list[$key]);
-				$arrTree = array_merge($arrTree,$this->getOptions($list, $val['cateid'], $level));
+				$arrTree = array_merge($arrTree,$this->getOptions($list, $val['cateid'], $level));//找其子类合并
 			}
 		}
 		
 		return $arrTree;
 	}
 	
-	//获取排序后的分类，非递归算法
+	//获取排序后的分类，非递归算法，借助栈的思想
 	public function getOptionsStack($list)
 	{
 		$list = array_reverse($list);
 		$arr = [];
 		$temp = [];
-		foreach($list as $key=>$val){
+		foreach($list as $key=>$val){//先取出所有的顶级分类
 			if($val['parentid']==0){
 				$val['level'] = 1;
 				unset($list[$key]);
@@ -63,7 +63,7 @@ class Category extends ActiveRecord
 			}
 		}
 		while(count($temp)>0){
-			$par = array_pop($temp);
+			$par = array_pop($temp);//array_pop,然后将其子分类入栈
 			$arr[] = $par;
 			foreach($list as $key=>$val){
 				if($val['parentid']==$par['cateid']){
@@ -74,6 +74,56 @@ class Category extends ActiveRecord
 			}
 		}
 		return $arr;
+	}
+	
+	//无限极分类，递归算法2
+	public function getOptionsAno($list,$root=0)
+	{
+		$tree=array();
+		foreach($list as $key=> $val){
+
+			if($val['parentid']==$root){
+				//获取当前$pid所有子类 
+					unset($list[$key]);
+					if(! empty($list)){
+						$child=$this->getOptionsAno($list,$val['cateid']);
+						if(!empty($child)){
+							$val['_child']=$child;
+						}                   
+					}              
+					$tree[]=$val; 
+			}
+		}   
+		return $tree;
+	}
+	
+	
+	//无限极分类，非递归算法2
+	public function getOptionsAnother($list,$root=0){
+		// 创建Tree
+		$tree = array();
+		dump($list);
+		if(is_array($list)) {
+			// 创建基于主键的数组引用
+			$refer = array();
+			foreach ($list as $key => $data) {
+				$refer[$data['cateid']] =& $list[$key];
+			}
+			dump($refer);
+			foreach ($list as $key => $data) {
+				// 判断是否存在parent
+				$parentId =  $data['parentid'];
+				if ($root == $parentId) {
+					$tree[] =& $list[$key];
+				}else{
+					if (isset($refer[$parentId])) {
+						$parent =& $refer[$parentId];
+						$parent['_child'][] =& $list[$key];
+					}
+				}
+			}
+		}
+		return $tree;
 	}
 	
 	//添加前缀 |--- 并且去除多余项
