@@ -1,6 +1,7 @@
 <?php
     use yii\bootstrap\ActiveForm;
     use yii\helpers\Html;
+	use yii\bootstrap\Alert;
 ?>
 <div class="row">
 			<ol class="breadcrumb">
@@ -9,6 +10,18 @@
 			</ol>
 </div><!--/.row-->
 <div class="row" style="margin-top:20px;">
+
+<?php
+if(\Yii::$app->session->hasFlash("info")){	
+		echo Alert::widget([
+			'options' => [
+				'class' => 'alert-info danger_alt', //这里是提示框的class
+				'style' => 'text-align:center;',
+			],
+			'body' => \Yii::$app->session->getFlash("info"), //消息体
+		]);		
+}
+?>
 
 	<?php
 		$form = ActiveForm::begin([
