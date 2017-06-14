@@ -16,6 +16,18 @@
 		<a type="button" class="btn btn-success pull-right" style="margin-top:20px;" href="<?php echo yii\helpers\Url::to(['category/addcategory']);?>"> + 添加分类 </a>
 	</div>
 </div>
+<?php
+if(\Yii::$app->session->hasFlash("info")){	
+		echo Alert::widget([
+			'options' => [
+				'class' => 'alert-info danger_alt', //这里是提示框的class
+				'style' => 'text-align:center;',
+			],
+			'body' => \Yii::$app->session->getFlash("info"), //消息体
+		]);		
+}
+?>
+
 <table class="table">
       <thead>
         <tr>

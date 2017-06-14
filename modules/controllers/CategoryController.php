@@ -29,9 +29,33 @@ class CategoryController extends CommonController
 		return $this->render('addcategory',['list'=>$options,'model'=>$model]);
 	}
 	
+	//获取分类列表
 	public function actionCategorylist(){
 		$model = new Category;
 		$data = $model->getCategoryOptions();
 		return $this->render('categorylist',['data'=>$data,'model'=>$model]);
 	}
+	
+	//删除栏目
+	public function actionDelcategory()
+	{
+		$cateid = intval(Yii::$app->request->get('cateid'));
+		if(empty($cateid)){
+			Yii::$app->session->setFlash('info', 'ceteid非法');
+			$this->redirect(['category/categorylist']);
+		}else{
+			$model = new Category();
+			if($model->deleteAll("cateid = :cateid",[':cateid'=>$cateid])){
+				Yii::$app->session->setFlash('info', '删除成功');
+				$this->redirect(['category/categorylist']);
+				return false;
+			}else{
+				Yii::$app->session->setFlash('info', '删除失败');
+				$this->redirect(['category/categorylist']);
+				Yii::$app->end();
+			}
+			
+		}
+	}
+	
 }

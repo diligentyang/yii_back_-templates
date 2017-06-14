@@ -68,6 +68,8 @@ Class BackController extends CommonController
 			return false;
 		}else{
 			Yii::$app->session->setFlash('info','删除失败');
+			$this->redirect(['back/adminlist']);
+			return false;
 		}
 	}
 	
