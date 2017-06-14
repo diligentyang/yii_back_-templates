@@ -50,4 +50,18 @@ YII后台模板
 
 # 实现效果如下几幅图所示
 
+## 登录页面
 
+![登录页面](./img/login.png)
+
+## 找回密码
+
+![找回密码](./img/findpass.png)
+
+## 管理员管理
+
+![管理员管理](./img/manager.png)
+
+## 分类管理
+
+![分类管理](./img/category.png)
