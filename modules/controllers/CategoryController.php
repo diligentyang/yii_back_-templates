@@ -39,13 +39,19 @@ class CategoryController extends CommonController
 	//删除栏目
 	public function actionDelcategory()
 	{
+		
 		$cateid = intval(Yii::$app->request->get('cateid'));
 		if(empty($cateid)){
 			Yii::$app->session->setFlash('info', 'ceteid非法');
 			$this->redirect(['category/categorylist']);
 		}else{
 			$model = new Category();
-			if($model->deleteAll("cateid = :cateid",[':cateid'=>$cateid])){
+			$data = Category::find()->where('parentid = :pid', [":pid" => $cateid])->one();
+			if($data){
+				Yii::$app->session->setFlash('info', '该分类下还有子类无法删除');
+				$this->redirect(['category/categorylist']);
+				return false;
+			}else if($model->deleteAll("cateid = :cateid",[':cateid'=>$cateid])){
 				Yii::$app->session->setFlash('info', '删除成功');
 				$this->redirect(['category/categorylist']);
 				return false;
