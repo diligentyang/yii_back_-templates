@@ -84,7 +84,7 @@ Class BackController extends CommonController
 			$qiniu = new \crazyfd\qiniu\Qiniu($ak, $sk,$domain, $bucket);
 			$key = time();
 			$qiniu->uploadFile($_FILES['pic']['tmp_name'],$key);
-			$url = $qiniu->getLink($key);
+			$url = $qiniu->getLink($key);//上传成功后的图片路径URL
 			dump($url);
 		}
 		return $this->render('uploadImg');
