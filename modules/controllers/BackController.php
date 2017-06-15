@@ -75,6 +75,18 @@ Class BackController extends CommonController
 	
 	/*图片管理（上传到七牛云）*/
 	public function actionUploadImg(){
+		if(Yii::$app->request->isPost){
+			//dump($_FILES['pic']['tmp_name']);
+			$ak = 'your AccessKey';
+			$sk = 'your SecretKey';
+			$domain = '*****.bkt.clouddn.com';
+			$bucket = '存储空间名称';
+			$qiniu = new \crazyfd\qiniu\Qiniu($ak, $sk,$domain, $bucket);
+			$key = time();
+			$qiniu->uploadFile($_FILES['pic']['tmp_name'],$key);
+			$url = $qiniu->getLink($key);
+			dump($url);
+		}
 		return $this->render('uploadImg');
 	}
 	
