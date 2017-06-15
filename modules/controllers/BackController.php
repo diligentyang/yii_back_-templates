@@ -73,5 +73,9 @@ Class BackController extends CommonController
 		}
 	}
 	
+	/*图片管理（上传到七牛云）*/
+	public function actionUploadImg(){
+		return $this->render('uploadImg');
+	}
 	
 }

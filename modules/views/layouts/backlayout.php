@@ -67,7 +67,7 @@
 				</ul>
 			</li>
 			<li><a href="charts.html"><span class="glyphicon glyphicon-stats"></span> Charts</a></li>
-			<li><a href="tables.html"><span class="glyphicon glyphicon-list-alt"></span> Tables</a></li>
+			<li><a href="<?php echo yii\helpers\Url::to(['back/upload-img']);?>"><span class="glyphicon glyphicon-picture"></span> 图片管理</a></li>
 			<li><a href="forms.html"><span class="glyphicon glyphicon-pencil"></span> Forms</a></li>
 			<li><a href="panels.html"><span class="glyphicon glyphicon-info-sign"></span> Alerts &amp; Panels</a></li>
 			<li class="parent ">
